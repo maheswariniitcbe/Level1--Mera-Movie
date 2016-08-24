@@ -1,0 +1,234 @@
+<style>
+.table
+{
+	margin-top:10%
+}
+</style>
+
+<div class="container">
+	<div class="row content table">
+        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  City
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  Theatre
+                </a>
+                <a href="#" class="list-group-item text-center">
+                   Trailer
+                </a>
+                <a href="#" class="list-group-item text-center">
+               Omdb Movies
+                </a>
+                <a href="#" class="list-group-item text-center">
+              Movie
+                </a>
+               <a href="#" class="list-group-item text-center">
+              Show Time
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                <!-- City-->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                      <table class="table">
+							            <thead>
+							                <tr>
+							                    <th>City ID</th>
+							                    <th>City Name</th>
+                            </tr>
+							            </thead>
+							            <tbody>
+							                <tr>
+							                 <td><input ng-model="contact.cityId" /></td>
+							                    <td><input ng-model="contact.cityName" /></td>
+							                    <td><button ng-click="addCity()" class="btn btn-primary">Add </button></td>
+							                    <td><button ng-click="updateCity()" class="btn btn-primary">Update</button></td>
+							                 </tr>
+							                <tr ng-repeat=" contact in contactlist">
+							                    <td>{{contact.cityId}}</td>
+							                    <td>{{contact.cityName}}
+							                    <td><button ng-click="removeCity(contact)" class="btn btn-danger">Remove</button></td>
+							                    <td><button ng-click="editCity(contact)" class="btn btn-primary">Edit</button></td>
+							                </tr>
+							            </tbody>
+							 </table>
+			                    </center>
+			                </div>
+
+                <!-- Threater -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                          <table class="table">
+                  <thead>
+                  <tr>
+                  <th>Threater Name</th>
+                  <th>Threater Location</th>
+                  <th>Seating Capacity</th>
+                  <th>ShowTime</th>
+                  </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        <td><input ng-model="tobj.threaterName" /></td>
+                        <td><select id="UserSelector"  ng-model="tobj.threaterLoc">
+      <option ng-repeat="contact in contactlist"  value="{{contact.cityName}}" >{{contact.cityName}}</option>
+    </select></td>
+    <td><input ng-model="tobj.seating"/></td>
+    <!-- showtime -->
+    <td><select id="UserSelector"  ng-model="tobj.ShowTime">
+      <option ng-repeat="timeobj in Timelist"  value="{{timeobj.Timings}}" >{{timeobj.Timings}}</option>
+    </select></td>
+    <td><button ng-click="addThreater()" class="btn btn-primary">Add</button></td>
+                                  <td><button ng-click="updateThreater()" class="btn btn-primary">Update</button></td>
+ </tr>
+  <tr ng-repeat="tobj in Threaterlist">
+ <td>{{tobj.threaterName}}</td>
+                          <td>{{tobj.threaterLoc}}</td>
+                          <td>{{tobj.seating}}</td>
+                          <td>{{tobj.ShowTime}}</td>
+                          <td><button ng-click="removeThreater(tobj)" class="btn btn-danger">Remove</button></td>
+                          <td><button ng-click="editThreater(tobj)" class="btn btn-primary">Edit</button></td>
+                      </tr>
+                      </tbody></table>
+                      </center>
+                      </div>
+                      <!-- Trailer  -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                          <table class="table">
+			            <thead>
+			                <tr>
+			                    <th>Trailer ID</th>
+                          <th>Trailer Name</th>
+                          <th>Duration</th>
+                          <th>Description</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                          <td><input ng-model="trailerobj.trailerID" /></td>
+<td><input ng-model="trailerobj.trailerName" /></td>
+			 <td><input ng-model="trailerobj.duration"/></td>
+<td><input ng-model="trailerobj.desc" /></td>
+<td><button ng-click="addTrailer()" class="btn btn-primary">Add</button></td>
+                          <td><button ng-click="updateTrailer()" class="btn btn-primary">Update</button></td>
+			                </tr>
+			                <tr>
+                       <tr ng-repeat="trailerobj in Trailerlist">
+                          <td>{{trailerobj.trailerID}}</td>
+			                    <td>{{trailerobj.trailerName}}</td>
+			                    <td>{{trailerobj.duration}}</td>
+			                    <td>{{trailerobj.desc}}</td>
+			                    <td><button ng-click="removeTrailer(trailerobj)" class="btn btn-danger">Remove</button></td>
+			                    <td><button ng-click="editTrailer(trailerobj)" class="btn btn-primary">Edit</button></td>
+			                </tr>
+			            </tbody>
+			 </table>
+                    </center>
+                </div>
+                <!-- omdb data for movies -->
+                 <div class="bhoechie-tab-content">
+                 <center>
+                 <table clas="table">
+                 <thead>
+                 <tr>
+                 <th>Movie Title</th>
+                 <!-- <th>Year</th> -->
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr>
+                    <td><input type="text" placeholder="MovieName" ng-model="movieObj.Title" /> </td>
+              <td>     <button ng-click="getData()" class="btn btn-primary">Get</button></td>
+ <td><button ng-click="addMovie()" class="btn btn-primary">Add</button><td>
+                </tr>
+                      <tr ng-repeat="moviess in movieObj">
+
+                          <td>{{moviess.Title}}</td>
+                          <td>{{moviess.Language}}</td>
+                          <td>{{moviess.Genre}}</td>
+                          <div><img ng-src="{{moviess.Poster}}" style="height:50px;width:50px;">{{moviess.Poster}}</div>
+<td><button ng-click="removeMovie(moviess)" class="btn btn-danger">Remove</button></td>
+                      </tr>
+                      </tbody>
+                      </table>
+                    </center>
+                </div>
+                <!-- Movie Deatails -->
+                <div class="bhoechie-tab-content">
+                     <center>
+                          <table class="table">
+                  <thead>
+                      <tr>
+                         <th>MovieName</th>
+                          <th>City</th>
+                          <th>ShowTime</th>
+                          <th>Showplace</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+  <tr>
+
+                  <td><select ng-model="now.Title" id="getMovieInfo">
+                <option  ng-repeat="moviess in movieObj">{{moviess.Title}}</option></select></td>
+                        <td><select id="UserSelector"  ng-model="now.City">
+      <option ng-repeat="contact in contactlist"  value="{{contact.cityName}}" >{{contact.cityName}}</option>
+    </select></td>
+                <td><select id="movietime"  ng-model="now.showTime">
+      <option ng-repeat="timeobj in Timelist"  value="{{timeobj.Timings}}" >{{timeobj.Timings}}</option>
+    </select></td>
+            <td><select ng-model="now.Name" id="threaterloc">
+                <option ng-repeat="tobj in Threaterlist">{{tobj.threaterName}}</option></select></td>
+       <td><button ng-click="addMovieInfo()"class="btn btn-primary">Add</button><td>
+                   </tr>
+
+                         <tr ng-repeat="now in nowlist">
+                         <td>{{now.Title}}</td>
+                         <td>{{now.City}}</td>
+                         <td>{{now.showTime}}</td>
+                          <td>{{now.Name}}</td>
+                          <td><button ng-click="removeMovieInfo(now)" class="btn btn-danger">Remove</button></td>
+                          <td><button ng-click="editMovieInfo(now)" class="btn btn-primary">Edit</button></td>
+                      </tr>
+                  </tbody>
+       </table>
+                    </center>
+
+                </div>
+                <!-- show time -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                          <table class="table">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>ShowTime</th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                       <td><input ng-model="timeobj.ID" /></td>
+                          <td><input ng-model="timeobj.Timings" /></td>
+                          <td><button ng-click="addTime()" class="btn btn-primary">Add</button></td>
+                          <td><button ng-click="updateTime()" class="btn btn-primary">Update</button></td>
+
+                      </tr>
+                      <tr ng-repeat=" timeobj in Timelist">
+                          <td>{{timeobj.Timings}}</td>
+                          <td><button ng-click="removeTime(timeobj)" class="btn btn-danger">Remove</button></td>
+                          <td><button ng-click="editTime(timeobj)" class="btn btn-primary">Edit</button></td>
+                      </tr>
+                  </tbody>
+       </table>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+  </div>
+</div>

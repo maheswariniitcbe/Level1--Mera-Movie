@@ -1,0 +1,41 @@
+<style>
+.table
+{
+	margin-top:10%
+}
+</style>
+
+<div class="container">
+  <div class="row content table">
+<table class="table">
+            <thead>
+    <tr>
+									<th>Id</th>
+                    <th>MovieName</th>
+                    <th>ThreaterName</th>
+                    <th>Location</th>
+                    <th>Showtime</th>
+                    <th>Number of seats</th>
+										
+                </tr>
+            </thead>
+            <tbody>
+							<tr>
+								<td><input  ng-model="bking.ID" /></td>
+						<td><select ng-model="bking.mName" id="getMovieInfo">
+						<option  ng-repeat="moviess in movieObj">{{moviess.Title}}</option></select></td>
+	<td><select ng-model="bking.tName" id="threaterloc">
+						<option ng-repeat="tobj in Threaterlist">{{tobj.threaterName}}</option></select></td>
+	<td><select id="UserSelector"  ng-model="bking.tLoc">
+<option ng-repeat="contact in contactlist"  value="{{contact.cityName}}" >{{contact.cityName}}</option>
+</select></td>	<td><select id="movietime"  ng-model="bking.sTime">
+<option ng-repeat="timeobj in Timelist"  value="{{timeobj.Timings}}" >{{timeobj.Timings}}</option>
+</select></td>
+<td><input id="nooftickets" ng-model="bking.noofTickets" /></td>
+									 <td><button ng-click="addbk()"  class"btn btn-primary">Booking</button><td>
+										 <td><button ng-click="refreshbk()"classk="btn btn-primary">Refresh</button><td>
+<td ng-repeat=" bking in bklist"></td>
+											</tr>
+										</tbody>
+									</thead>
+									 	</table>
